@@ -1,0 +1,40 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+env/
+myenv/
+ENV/
+.venv/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# VSCode and editor configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env
+.env.*
+
+# Migrations (optional to ignore)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# OS-specific files
+.DS_Store
+Thumbs.db

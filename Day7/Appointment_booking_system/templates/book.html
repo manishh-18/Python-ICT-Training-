@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Appointment</title>
+</head>
+<body>
+    <h2>Appointment Booking</h2>
+    <form action="/submit" method="post">
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Date:</label><br>
+        <input type="date" name="date" required><br><br>
+
+        <label>Time:</label><br>
+        <input type="time" name="time" required><br><br>
+
+        <label>Message:</label><br>
+        <textarea name="message" rows="4" cols="30"></textarea><br><br>
+
+        <input type="submit" value="Book Appointment">
+    </form>
+
+    <br>
+    <a href="/appointments">View All Appointments</a>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 0.6rem;
+            font-size: 1rem;
+        }
+        button {
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .add-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+        .task.completed span {
+            text-decoration: line-through;
+            color: gray;
+        }
+        .task-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .toggle-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 To-Do List</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.title }}
+            <button type="submit" class="add-btn">Add</button>
+        </form>
+
+        <!-- Display all tasks -->
+        {% for task in tasks %}
+        <div class="task {% if task.completed %}completed{% endif %}">
+            <span>{{ task.title }}</span>
+            <div class="task-buttons">
+                <form method="POST" action="{% url 'toggle_task' task.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="toggle-btn">
+                        {% if task.completed %}Undo{% else %}Done{% endif %}
+                    </button>
+                </form>
+                <form method="POST" action="{% url 'delete_task' task.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">Delete</button>
+                </form>
+                <form method="get" action="{% url 'edit_task' task.id %}">
+                    <button type="submit" class="toggle-btn">Edit</button>
+                </form>
+
+            </div>
+        </div>
+        {% empty %}
+            <p>No tasks yet. Add one!</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

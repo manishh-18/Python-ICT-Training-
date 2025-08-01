@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+    <style>
+        body { font-family: Arial; background: #f2f2f2; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 10px; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        button:hover { background: #45a049; }
+        .message { color: green; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Contact Us</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea name="message" rows="5" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

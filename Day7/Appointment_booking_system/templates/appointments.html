@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Appointments</title>
+</head>
+<body>
+    <h2>Appointments List</h2>
+    {% if appointments %}
+        <ul>
+            {% for appt in appointments %}
+                <li>
+                    <strong>{{ appt.name }}</strong> ({{ appt.email }}) - {{ appt.date }} at {{ appt.time }}
+                    <br>Message: {{ appt.message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No appointments yet.</p>
+    {% endif %}
+    <a href="/">Back to Booking</a>
+</body>
+</html>

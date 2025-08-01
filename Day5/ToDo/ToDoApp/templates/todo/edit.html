@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Task</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        form {
+            display: flex;
+            gap: 1rem;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 0.6rem;
+            font-size: 1rem;
+        }
+        button {
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Task</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.title }}
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

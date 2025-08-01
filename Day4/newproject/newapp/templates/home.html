@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Static Website</title>
+</head>
+<body>
+    <h1>Enter your details: </h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Enter your name">
+        <input type="text" name="number" placeholder="Enter your number">
+        <button>Submit</button>
+    </form>
+    <div>
+        {% for i in data %}
+            {{i.name}} = {{i.number}} <br>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .product-card h2 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .product-card p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .add-to-cart {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .add-to-cart:hover {
+            background-color: #0056b3;
+        }
+        .cart-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .cart-link a {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .cart-link a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Our Products</h1>
+
+    <div class="products">
+        {% for product in products %}
+            <div class="product-card">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% endif %}
+                <h2>{{ product.name }}</h2>
+                <p>₹{{ product.price }}</p>
+                <a class="add-to-cart" href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="cart-link">
+        <a href="{% url 'view_cart' %}">🛒 View Cart</a>
+    </div>
+</body>
+</html>

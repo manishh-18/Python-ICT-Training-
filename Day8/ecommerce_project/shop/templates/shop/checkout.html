@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout Complete</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333333;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thank You for Your Purchase!</h1>
+        <p>Your order has been successfully placed. We’ll contact you shortly!</p>
+        <a href="{% url 'product_list' %}">Continue Shopping</a>
+    </div>
+</body>
+</html>

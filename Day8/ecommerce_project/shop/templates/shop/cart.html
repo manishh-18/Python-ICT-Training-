@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+        }
+        .product {
+            background: white;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .product img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        .product-info {
+            flex-grow: 1;
+        }
+        .btn {
+            background-color: #d9534f;
+            color: white;
+            padding: 5px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background-color: #c9302c;
+        }
+        .total {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 18px;
+        }
+        .checkout-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            background-color: #5cb85c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .checkout-btn:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+
+    {% if products %}
+        {% for product in products %}
+            <div class="product">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% endif %}
+                <div class="product-info">
+                    <p><strong>{{ product.name }}</strong></p>
+                    <p>₹{{ product.price }}</p>
+                </div>
+                <a class="btn" href="{% url 'remove_from_cart' product.id %}">Remove</a>
+            </div>
+        {% endfor %}
+
+        <div class="total">Total: ₹{{ total }}</div>
+
+        <a class="checkout-btn" href="{% url 'checkout' %}">Proceed to Checkout</a>
+    {% else %}
+        <p style="text-align:center;">Your cart is empty.</p>
+    {% endif %}
+</body>
+</html>
